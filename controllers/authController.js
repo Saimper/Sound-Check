@@ -9,7 +9,7 @@ exports.register = async (req, res) => {
     req.session.userId = user.id;
     res.redirect('/acoustic');
   } catch (error) {
-    res.status(500).send('Error registering new user');
+    res.status(500).send('ESTE USUARIO YA SE ENCUENTRA REGISTRADO');
   }
 };
 
