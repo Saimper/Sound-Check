@@ -5,54 +5,223 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sound Check</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700&family=Rubik:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-          .btn-custom {
-            background-color: #3a367c;
-            border-color: #2600ff;
-            box-shadow: 0px 4px 5px rgba(0, 0, 0, 0.2);
+        :root {
+            --dark-bg: #0a0a12;
+            --darker-bg: #050508;
+            --card-bg: #13131f;
+            --card-border: #252538;
+            --text-primary: #f0f0ff;
+            --text-secondary: #c0c0d0;
+            --accent-primary: #6e44ff;
+            --accent-secondary: #2bd1fc;
+            --accent-tertiary: #ff3e9d;
+            --neon-glow: 0 0 10px rgba(110, 68, 255, 0.5);
+            --transition-fast: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-medium: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
-
+        
+        body {
+            background-color: var(--dark-bg);
+            color: var(--text-primary);
+            font-family: 'Rubik', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            line-height: 1.6;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Orbitron', sans-serif;
+            letter-spacing: 0.5px;
+        }
+        
+        .navbar {
+            background-color: var(--darker-bg) !important;
+            border-bottom: 1px solid rgba(110, 68, 255, 0.2);
+            padding: 12px 0;
+            backdrop-filter: blur(8px);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 1.8rem;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: var(--neon-glow);
+            letter-spacing: 1.5px;
+        }
+        
+        .nav-link {
+            font-weight: 600;
+            color: var(--text-secondary) !important;
+            margin: 0 8px;
+            padding: 8px 16px !important;
+            border-radius: 6px;
+            transition: var(--transition-fast);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .nav-link::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+            transition: var(--transition-fast);
+        }
+        
+        .nav-link:hover, .nav-item.active .nav-link {
+            color: var(--text-primary) !important;
+        }
+        
+        .nav-link:hover::before, .nav-item.active .nav-link::before {
+            width: 100%;
+        }
+        
+        .container {
+            padding-bottom: 60px;
+        }
+        
         .card {
-            transition: transform 0.5s ease;
+            background-color: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            transition: var(--transition-medium);
+            margin-bottom: 30px;
         }
-
+        
         .card:hover {
-            transform: scale(1.05);
+            transform: translateY(-8px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3), 0 0 15px rgba(110, 68, 255, 0.3);
+            border-color: rgba(110, 68, 255, 0.4);
+        }
+        
+        .card-img-top {
+            height: 240px;
+            object-fit: cover;
+            border-bottom: 1px solid var(--card-border);
+        }
+        
+        .card-body {
+            padding: 20px;
+        }
+        
+        .card-title {
+            font-weight: 600;
+            font-size: 1.25rem;
+            margin-bottom: 12px;
+            color: var(--text-primary);
+        }
+        
+        .card-text {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            margin-bottom: 20px;
+        }
+        
+        .btn-custom {
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-tertiary));
+            border: none;
+            border-radius: 8px;
+            padding: 10px 20px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            transition: var(--transition-medium);
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            color: white;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+        }
+        
+        .btn-custom:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3), 0 0 15px rgba(110, 68, 255, 0.4);
+        }
+        
+        footer {
+            background-color: var(--darker-bg);
+            padding: 30px 0 20px;
+            margin-top: auto;
+            border-top: 1px solid rgba(110, 68, 255, 0.2);
+        }
+        
+        footer p {
+            margin-bottom: 12px;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+        
+        footer i {
+            color: var(--accent-secondary);
+            margin-right: 10px;
+            font-size: 1.1rem;
+        }
+        
+        .footer-glow {
+            text-shadow: 0 0 8px rgba(43, 209, 252, 0.3);
+        }
+        
+        @media (max-width: 768px) {
+            .navbar-brand {
+                font-size: 1.5rem;
+            }
+            
+            .nav-link {
+                margin: 4px 0;
+                text-align: center;
+            }
+            
+            .card {
+                margin-bottom: 20px;
+            }
         }
     </style>
 </head>
-<body style="background-color: #121212; color: #ffffff;">
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" href="#">Sound Check</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="acoustic">Acoustic<span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="electric">Electric</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="bass">Bass</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="amps">Amps</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/">Salir</a>
-                </li>
-            </ul>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#">SOUND CHECK</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="acoustic">Acoustic<span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="electric">Electric</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="bass">Bass</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="amps">Amps</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">Salir</a>
+                    </li>
+                </ul>
+            </div>
         </div>
     </nav>
 
     <div class="container mt-5">
         <div class="row">
-            <div class="col-md-4 mb-4">
-                <div class="card bg-dark text-white">
-                    <img src="/public/img/Acoustic/1920s-Larson-Brothers-Stahl-Style-8-19_a32af05c-87fa-430d-9c05-cdc15420c697_460x.webp" class="card-img-top" alt="...">
+            <div class="col-md-4">
+                <div class="card">
+                    <img src="/public/img/Acoustic/1920s-Larson-Brothers-Stahl-Style-8-19_a32af05c-87fa-430d-9c05-cdc15420c697_460x.webp" class="card-img-top" alt="Larson Brothers Stahl">
                     <div class="card-body">
                         <h5 class="card-title">Larson-Brothers-Stahl</h5>
                         <p class="card-text">1920s</p>
@@ -60,9 +229,9 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-4 mb-4">
-                <div class="card bg-dark text-white">
-                    <img src="/public/img/Acoustic/1936-Epiphone-Zenith-Sunburst-13_460x.webp" class="card-img-top" alt="...">
+            <div class="col-md-4">
+                <div class="card">
+                    <img src="/public/img/Acoustic/1936-Epiphone-Zenith-Sunburst-13_460x.webp" class="card-img-top" alt="Epiphone Zenith">
                     <div class="card-body">
                         <h5 class="card-title">Epiphone-Zenith</h5>
                         <p class="card-text">1936</p>
@@ -70,9 +239,9 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-4 mb-4">
-                <div class="card bg-dark text-white">
-                    <img src="/public/img/Acoustic/1946-Martin-00-17-15_460x.webp" class="card-img-top" alt="...">
+            <div class="col-md-4">
+                <div class="card">
+                    <img src="/public/img/Acoustic/1946-Martin-00-17-15_460x.webp" class="card-img-top" alt="Martin 00-17">
                     <div class="card-body">
                         <h5 class="card-title">Martin</h5>
                         <p class="card-text">1946</p>
@@ -80,9 +249,9 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-4 mb-4">
-                <div class="card bg-dark text-white">
-                    <img src="/public/img/Acoustic/1970-Gibson-B-25-N-Natural-12_460x.webp" class="card-img-top" alt="...">
+            <div class="col-md-4">
+                <div class="card">
+                    <img src="/public/img/Acoustic/1970-Gibson-B-25-N-Natural-12_460x.webp" class="card-img-top" alt="Gibson B-25">
                     <div class="card-body">
                         <h5 class="card-title">Gibson-B-25</h5>
                         <p class="card-text">1970</p>
@@ -90,9 +259,9 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-4 mb-4">
-                <div class="card bg-dark text-white">
-                    <img src="/public/img/Acoustic/1991-Martin-000-45-15_460x.webp" class="card-img-top" alt="...">
+            <div class="col-md-4">
+                <div class="card">
+                    <img src="/public/img/Acoustic/1991-Martin-000-45-15_460x.webp" class="card-img-top" alt="Martin 000-45">
                     <div class="card-body">
                         <h5 class="card-title">Martin</h5>
                         <p class="card-text">1991</p>
@@ -100,9 +269,9 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-4 mb-4">
-                <div class="card bg-dark text-white">
-                    <img src="/public/img/Acoustic/2014-Gibson-Custom-64-SJ-200-Ltd-Edition-Sunburst-14_460x.webp" class="card-img-top" alt="...">
+            <div class="col-md-4">
+                <div class="card">
+                    <img src="/public/img/Acoustic/2014-Gibson-Custom-64-SJ-200-Ltd-Edition-Sunburst-14_460x.webp" class="card-img-top" alt="Gibson Custom SJ-200">
                     <div class="card-body">
                         <h5 class="card-title">Gibson-Custom</h5>
                         <p class="card-text">2014</p>
@@ -112,21 +281,21 @@
             </div>
         </div>
     </div>
-    <footer class="bg-dark text-white text-center py-4">
+    <footer>
         <div class="container">
             <div class="row">
                 <div class="col-md-4">
-                    <p><i class="fas fa-envelope"></i> Correo: soundchek@gmail.com</p>
+                    <p><i class="fas fa-envelope footer-glow"></i> Correo: soundchek@gmail.com</p>
                 </div>
                 <div class="col-md-4">
-                    <p><i class="fas fa-phone"></i> Teléfono: +57 3200577452</p>
+                    <p><i class="fas fa-phone footer-glow"></i> Teléfono: +57 3200577452</p>
                 </div>
                 <div class="col-md-4">
-                    <p><i class="fas fa-map-marker-alt"></i> Ubicación: Sincelejo-Sucre</p>
+                    <p><i class="fas fa-map-marker-alt footer-glow"></i> Ubicación: Sincelejo-Sucre</p>
                 </div>
             </div>
         </div>
-        <p>&copy; 2024 Mercado - CUN</p>
+        <p class="mt-3 text-center">&copy; 2024 Mercado - CUN</p>
     </footer>
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
